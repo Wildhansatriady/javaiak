@@ -10,11 +10,29 @@ import android.widget.TextView;
 import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
-
+    //variable global karena dipakai lebih dari satu method
+    //di beri nilai nol karena defaultnya nol.
+    int qty = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    public void plus(View view){
+        //menambah qty
+        qty = qty+1;
+        //qty++;
+        //qty+=1;
+        display(qty);
+    }
+
+    public void min(View view){
+        //mengurangi qty
+        if(qty!=0) {
+            qty = qty - 1;
+            display(qty);
+        }
     }
 
     //sesuaikan dengan nama method onclick yang di button tadi
@@ -27,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
         //pertambahan +
         //modulus %
 
-        operasiMatematika(4);
-        displayPrice(4*5);
+        //display(4);
+        //displayPrice(4*5);
     }
 
-    public void operasiMatematika(int number){
+    public void display(int number){
         //untuk menyambungkan textview dengan mainactivity.java
         TextView textCount = (TextView) findViewById(R.id.qty);
         //untuk mengubah textView sesuai dengan number parameter

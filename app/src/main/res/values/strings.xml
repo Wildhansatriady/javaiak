@@ -3,4 +3,7 @@
     <string name="quantity">Quantity</string>
     <string name="_0">0</string>
     <string name="order">Order</string>
+
+    <string name="min">-</string>
+    <string name="plus">+</string>
 </resources>
