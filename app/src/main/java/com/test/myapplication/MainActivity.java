@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         //pengurangan -
         //pertambahan +
         //modulus %
-        
+
         displayPrice(qty*5);
     }
 
