@@ -3,6 +3,8 @@ package com.test.myapplication;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -58,6 +60,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void email(View view){
+        composeEmail(new String[]{"test"},"test");
+    }
+    public void composeEmail(String[] addresses, String subject) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, addresses);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        //ini untuk isi pesan gmail
+        intent.putExtra(Intent.EXTRA_TEXT, "1234");
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
     //sesuaikan dengan nama method onclick yang di button tadi
     public void OrderCoffee(View view){
         //mengubah textview menjadi angka satu ketika di klik
@@ -68,8 +84,12 @@ public class MainActivity extends AppCompatActivity {
         //pertambahan +
         //modulus %
         //displayPrice(qty*5);
-        getWhipedCreamStatus();
+        int tambahCream=0;
+        if(getWhipedCreamStatus()){
+            tambahCream = qty*2;
+        }
         int price = price(qty);
+        price = price+tambahCream;
         displayPrice(price);
         showSummary(summary(price));
     }
@@ -134,7 +154,8 @@ public class MainActivity extends AppCompatActivity {
         //summary opsi 2 tinggal hapus comment dengan cara block semua line
         // ctrl+shift+/
         /*String summary2="";
-        summary2+="Nama : Wildhan S\n";
+        summary2+="Nama : "+getNama();
+        summary2+="Add Whiped Cream ? "+getWhipedCreamStatus()+"\n";
         summary2+="Quantity : "+qty+"\n";
         summary2+=NumberFormat.getCurrencyInstance()
                 .format(number)+"\n";
