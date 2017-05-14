@@ -44,9 +44,8 @@ public class MainActivity extends AppCompatActivity {
         //pengurangan -
         //pertambahan +
         //modulus %
-
-        //display(4);
-        //displayPrice(4*5);
+        
+        displayPrice(qty*5);
     }
 
     public void display(int number){
