@@ -63,9 +63,14 @@ public class MainActivity extends AppCompatActivity {
         //pengurangan -
         //pertambahan +
         //modulus %
-
-        displayPrice(qty*5);
+        //displayPrice(qty*5);
+        displayPrice(price(qty));
     }
+
+    private int price(int qty){
+        return qty*5;
+    }
+
 
     public void display(int number){
         //untuk menyambungkan textview dengan mainactivity.java
@@ -80,9 +85,19 @@ public class MainActivity extends AppCompatActivity {
     private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        String pesan = "Thank you";
-            priceTextView.setText(NumberFormat.getCurrencyInstance()
-                    .format(number)+"\n"+pesan);
 
+        priceTextView.setText(summary(number));
+
+    }
+
+    private String summary(int number){
+        String nama = "Nama : Wildhan S\n";
+        String qtySummary = "Quantity : "+qty+"\n";
+        String price = NumberFormat.getCurrencyInstance()
+                .format(number)+"\n";
+        String pesan = "Thank you\n";
+        String summary =nama+qtySummary+price+pesan;
+
+        return summary;
     }
 }

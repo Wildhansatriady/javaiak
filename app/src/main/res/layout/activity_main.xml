@@ -23,10 +23,9 @@
         <Button
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:text="@string/plus"
-            android:onClick="plus"
-            android:layout_margin="8dp"/>
-
+            android:text="@string/min"
+            android:layout_margin="8dp"
+            android:onClick="min"/>
         <TextView
             android:id="@+id/qty"
             android:layout_width="wrap_content"
@@ -38,12 +37,15 @@
             android:textColor="@android:color/black"
             android:text="@string/_0"/>
 
+
         <Button
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:text="@string/min"
-            android:layout_margin="8dp"
-            android:onClick="min"/>
+            android:text="@string/plus"
+            android:onClick="plus"
+            android:layout_margin="8dp"/>
+
+
     </LinearLayout>
 
     <TextView
