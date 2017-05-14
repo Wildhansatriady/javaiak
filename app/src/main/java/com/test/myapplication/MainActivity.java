@@ -2,10 +2,13 @@ package com.test.myapplication;
 
 
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 
@@ -21,10 +24,26 @@ public class MainActivity extends AppCompatActivity {
 
     public void plus(View view){
         //menambah qty
-        qty = qty+1;
-        //qty++;
-        //qty+=1;
-        display(qty);
+        if(qty>=8) {
+            Toast.makeText(getApplicationContext(),
+                    "Stok Cuman 8",Toast.LENGTH_SHORT).show();
+            //dialog
+            final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setMessage("Stok cuman 8")
+                    .setTitle("Warning!!")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialog.show().dismiss();
+                        }
+                    }).create().show();
+        }else {
+
+            qty = qty + 1;
+            //qty++;
+            //qty+=1;
+            display(qty);
+        }
     }
 
     public void min(View view){
@@ -61,7 +80,9 @@ public class MainActivity extends AppCompatActivity {
     private void displayPrice(int number) {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+        String pesan = "Thank you";
+            priceTextView.setText(NumberFormat.getCurrencyInstance()
+                    .format(number)+"\n"+pesan);
 
     }
 }
