@@ -64,7 +64,9 @@ public class MainActivity extends AppCompatActivity {
         //pertambahan +
         //modulus %
         //displayPrice(qty*5);
-        displayPrice(price(qty));
+        int price = price(qty);
+        displayPrice(price);
+        showSummary(summary(price));
     }
 
     private int price(int qty){
@@ -86,18 +88,41 @@ public class MainActivity extends AppCompatActivity {
         TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
         //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 
-        priceTextView.setText(summary(number));
+        priceTextView.setText(NumberFormat.getCurrencyInstance().format(number));
+        //showSummary(summary(number));
+    }
 
+    private void showNama(String nama){
+        TextView tv_nama = (TextView) findViewById(R.id.tv_nama);
+        tv_nama.setText(nama);
+    }
+
+    private void showSummary(String summary){
+        TextView tv_summary = (TextView) findViewById(R.id.summary);
+        tv_summary.setText(summary);
     }
 
     private String summary(int number){
-        String nama = "Nama : Wildhan S\n";
+        String nama = "Nama : Wildhan S";
+        //step 1 masukan value nama ke method show nama
+        showNama(nama);
         String qtySummary = "Quantity : "+qty+"\n";
         String price = NumberFormat.getCurrencyInstance()
                 .format(number)+"\n";
         String pesan = "Thank you\n";
-        String summary =nama+qtySummary+price+pesan;
-
+        String summary =qtySummary+price+pesan;
         return summary;
+
+        //summary opsi 2 tinggal hapus comment dengan cara block semua line
+        // ctrl+shift+/
+        /*String summary2="";
+        summary2+="Nama : Wildhan S\n";
+        summary2+="Quantity : "+qty+"\n";
+        summary2+=NumberFormat.getCurrencyInstance()
+                .format(number)+"\n";
+        summary2+="Thank you\n";
+        return sumary2;
+*/
+
     }
 }
