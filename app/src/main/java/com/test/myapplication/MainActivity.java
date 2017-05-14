@@ -6,7 +6,10 @@ import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     //variable global karena dipakai lebih dari satu method
     //di beri nilai nol karena defaultnya nol.
     int qty = 0;
+    boolean hasWhipedCream = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,9 +68,15 @@ public class MainActivity extends AppCompatActivity {
         //pertambahan +
         //modulus %
         //displayPrice(qty*5);
+        getWhipedCreamStatus();
         int price = price(qty);
         displayPrice(price);
         showSummary(summary(price));
+    }
+    private boolean getWhipedCreamStatus(){
+        CheckBox mCheckBox = (CheckBox) findViewById(R.id.whippedcream);
+        Log.v("MainActivity",mCheckBox.isChecked()+"");
+        return mCheckBox.isChecked();
     }
 
     private int price(int qty){
@@ -102,15 +112,23 @@ public class MainActivity extends AppCompatActivity {
         tv_summary.setText(summary);
     }
 
+
+
+    private String getNama(){
+        EditText etNama = (EditText) findViewById(R.id.et_nama);
+        return etNama.getText().toString();
+    }
+
     private String summary(int number){
-        String nama = "Nama : Wildhan S";
+        String nama = "Nama : "+getNama();//get nama dari edit text
         //step 1 masukan value nama ke method show nama
         showNama(nama);
         String qtySummary = "Quantity : "+qty+"\n";
         String price = NumberFormat.getCurrencyInstance()
                 .format(number)+"\n";
         String pesan = "Thank you\n";
-        String summary =qtySummary+price+pesan;
+        String whippedCreamStatus = "Add Whiped Cream ? "+getWhipedCreamStatus()+"\n";
+        String summary =whippedCreamStatus+qtySummary+price+pesan;
         return summary;
 
         //summary opsi 2 tinggal hapus comment dengan cara block semua line
