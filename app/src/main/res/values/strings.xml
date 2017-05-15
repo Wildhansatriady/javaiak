@@ -6,4 +6,5 @@
 
     <string name="min">-</string>
     <string name="plus">+</string>
+    <string name="summary">Summary :</string>
 </resources>
